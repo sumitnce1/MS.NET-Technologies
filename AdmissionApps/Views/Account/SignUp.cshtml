@@ -1,0 +1,51 @@
+﻿@model AdmissionApps.Users
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<h1 class="text-info">SignUp</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SignUp">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNo" class="control-label"></label>
+                <input asp-for="MobileNo" class="form-control" />
+                <span asp-validation-for="MobileNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailId" class="control-label"></label>
+                <input asp-for="EmailId" class="form-control" />
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="SignUp" class="btn btn-info w-100 mt-4" />
+            </div>
+            @{
+                if (ViewData["MSG"] != null)
+                {
+                    <span> @ViewData["MSG"].ToString()</span>
+                }
+            }
+        </form>
+    </div>
+</div>
+
+<div class="">
+    <a asp-action="Login" class="text-decoration-none">Click Here to Login</a>
+</div>
+

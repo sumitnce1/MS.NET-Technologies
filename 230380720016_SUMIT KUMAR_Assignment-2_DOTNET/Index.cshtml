@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AdmissionApps.Users>
+
+@{
+    ViewData["Title"] = "Index";
+    var name = User.Identity.Name;
+}
+<div class="bg-warning p-4 rounded">
+ 
+<h3>Welcome to <span class="text-primary"> @name </span>:)</h3>
+<hr />
+<h2 class="text-primary text-center">Student List</h2>
+<hr/>
+    <table class="text-center table table-bordered border-primary table-dark table-striped rounded">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>  
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdmissionStatus)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) 
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdmissionStatus)
+            </td>
+            <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { /*id=item.Id*/ }, new { @class = "btn btn-danger" })
+             </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

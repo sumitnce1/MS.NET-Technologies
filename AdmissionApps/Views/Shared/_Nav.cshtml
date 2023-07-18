@@ -1,0 +1,72 @@
+﻿@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var Role = User.FindFirstValue(ClaimTypes.Role);
+    var IsAdmin = User.IsInRole("Admin");
+    var IsStudent = User.IsInRole("STUDENT");
+    var IsOperator = User.IsInRole("Operator");
+}
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between navbar-dark">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>
+        @if (IsAdmin)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Student Panel</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item bg-primary" asp-area="" asp-controller="Admin" asp-action="Index">Student List</a></li>
+                    <li><a class="dropdown-item bg-warning" asp-area="" asp-controller="Account" asp-action="SignUp">Create New Student Account</a></li>
+                    <li><a class="dropdown-item" href="#">Add More Option Releted Student</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Operator Panel</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item bg-primary" asp-area="" asp-controller="Admin" asp-action="OperatorList">Operator List</a></li>
+                    <li><a class="dropdown-item" href="#">Add More Option Releted Operator</a></li>
+                </ul>
+            </li>
+        }
+        @if (IsOperator)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Student Panel</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item bg-primary" asp-area="" asp-controller="Operator" asp-action="Index">StudentList</a></li>                    
+                    <li><a class="dropdown-item" href="#">Add More Option Releted Student</a></li>
+                </ul>
+            </li>
+        }
+        @if (IsStudent)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
+            </li>
+        }
+
+        @if (IsStudent || IsAdmin || IsOperator)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">My Account</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item bg-info" href="#">Edit Profile</a></li>
+                    <li><a class="dropdown-item bg-primary" asp-area="" asp-controller="Account" asp-action="ChangePassword">ChangePassword</a></li>
+                    <li><a class="dropdown-item bg-warning" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>                    
+                </ul>
+            </li>         
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Signup">Signup</a>
+            </li>
+        }
+    </ul>
+</div>

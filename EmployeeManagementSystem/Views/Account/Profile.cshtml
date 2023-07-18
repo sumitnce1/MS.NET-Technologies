@@ -1,0 +1,49 @@
+﻿@model EmployeeManagementSystem.Employee
+
+@{
+    ViewData["Title"] = "Profile";
+    var IsFormFill = Model.EmployeeStatus == "ADMIT" ? true : false;
+    var name = User.Identity.Name;
+}
+<h1 class="text-info">Welcome to @name :)</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Profile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Firstname" class="control-label"></label>
+                <input asp-for="Firstname" class="form-control" disabled="@IsFormFill" />
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lastname" class="control-label"></label>
+                <input asp-for="Lastname" class="form-control" disabled="@IsFormFill" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" disabled="@IsFormFill" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNo" class="control-label"></label>
+                <input asp-for="MobileNo" class="form-control" disabled="@IsFormFill" />
+                <span asp-validation-for="MobileNo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                @if (Model.EmployeeStatus != "ADMIT")
+                {
+                <input type="submit" value="Update Profile" class="btn btn-success w-100 mt-3 mb-3" />
+                }
+            </div>
+            @if (ViewData["MSG"] != null)
+            {
+                <span> @ViewData["MSG"].ToString()</span>
+            }
+        </form>
+    </div>
+</div>
+
+

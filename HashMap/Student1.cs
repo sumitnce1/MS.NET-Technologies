@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HashMap
+   public class Student
+{
+    public string Name { get; set; }
+    public string Age { get; set; }
+    public string RollNo { get; set; }
+}
+internal class Program1
+{
+
+    static void Main1(string[] args)
+    {
+        List<Student> studentlist = new List<Student>();
+        studentlist.Add(new Student { Name = "Ram", Age = "34", RollNo = "456" });
+        studentlist.Add(new Student { Name = "Shyam", Age = "30", RollNo = "234" });
+        studentlist.Add(new Student { Name = "Sita", Age = "25", RollNo = "56778" });
+        foreach (Student item in studentlist)
+        {
+            Console.WriteLine($"{item.Name}:{item.Age}: {item.RollNo}");
+        }
+        Console.ReadKey();
+        /*Dictionary<string, int> obj = new Dictionary<string, int>();
+        obj.Add("a", 1);
+        obj.Add("b", 2);
+        obj.Add("c", 3);
+        obj.Add("d", 4);
+        obj.Add("e", 5);
+        foreach (KeyValuePair<string,int> key in obj)
+        {
+            Console.WriteLine(key.Value);
+        }
+        */
+        /* List<string> list = new List<string>();
+         list.Add("Ram");
+         list.Add("Ram2");
+         list.Add("Ram4");
+         list.Add("Ram3");
+         list.Remove(list[0]);
+         list.RemoveAt(2);
+         foreach (string item in list)
+         {
+             Console.WriteLine(item);
+         }
+
+
+
+
+         Console.ReadKey();
+        */
+    }
+
+}
